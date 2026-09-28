@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ExpenseTracker | Register</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: "Segoe UI", Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #eff6ff, #eef2ff);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .navbar {
+            height: 70px;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 45px;
+            box-shadow: 0 2px 15px rgba(0,0,0,.07);
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: 800;
+            color: #2563eb;
+        }
+
+        .logo span {
+            color: #111827;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 10px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #475569;
+            font-weight: 600;
+            padding: 10px 15px;
+            border-radius: 9px;
+        }
+
+        .nav-links a:hover {
+            background: #eff6ff;
+            color: #2563eb;
+        }
+
+        .main {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 45px 20px;
+        }
+
+        .card {
+            width: 100%;
+            max-width: 1000px;
+            min-height: 580px;
+            background: white;
+            border-radius: 28px;
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            box-shadow: 0 25px 60px rgba(15,23,42,.13);
+        }
+
+        .left {
+            background: linear-gradient(145deg, #2563eb, #4f46e5);
+            color: white;
+            padding: 55px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .big-icon {
+            width: 75px;
+            height: 75px;
+            background: rgba(255,255,255,.15);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 35px;
+            margin-bottom: 25px;
+        }
+
+        .left h1 {
+            font-size: 42px;
+            margin-bottom: 18px;
+        }
+
+        .left p {
+            line-height: 1.7;
+            opacity: .9;
+        }
+
+        .features {
+            margin-top: 30px;
+        }
+
+        .feature {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 14px 0;
+        }
+
+        .check {
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            background: rgba(255,255,255,.18);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .right {
+            padding: 55px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .right h2 {
+            font-size: 31px;
+            color: #111827;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            color: #64748b;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            color: #334155;
+            margin-bottom: 8px;
+        }
+
+        .input-box {
+            position: relative;
+        }
+
+        .input-icon {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        input {
+            width: 100%;
+            padding: 14px 15px 14px 45px;
+            border: 1px solid #dbe2ea;
+            border-radius: 12px;
+            background: #f8fafc;
+            outline: none;
+            font-size: 15px;
+        }
+
+        input:focus {
+            border-color: #2563eb;
+            background: white;
+            box-shadow: 0 0 0 4px rgba(37,99,235,.1);
+        }
+
+        .btn {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 12px;
+            background: linear-gradient(135deg,#2563eb,#4f46e5);
+            color: white;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: .2s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(37,99,235,.25);
+        }
+
+        .btn:disabled {
+            opacity: .6;
+            cursor: not-allowed;
+        }
+
+        .message {
+            display: none;
+            padding: 13px;
+            border-radius: 10px;
+            margin-top: 18px;
+            font-size: 14px;
+        }
+
+        .success {
+            display: block;
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .error {
+            display: block;
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .bottom-link {
+            text-align: center;
+            margin-top: 22px;
+            color: #64748b;
+        }
+
+        .bottom-link a {
+            color: #2563eb;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .info {
+            background: #eff6ff;
+            color: #1e40af;
+            padding: 12px;
+            border-radius: 10px;
+            margin-top: 18px;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #64748b;
+            font-size: 13px;
+        }
+
+        @media(max-width: 800px) {
+            .card {
+                grid-template-columns: 1fr;
+            }
+
+            .left {
+                display: none;
+            }
+
+            .right {
+                padding: 35px;
+            }
+
+            .navbar {
+                padding: 0 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<nav class="navbar">
+
+    <div class="logo">
+        Expense<span>Tracker</span>
+    </div>
+
+    <div class="nav-links">
+        <a href="/">Dashboard</a>
+        <a href="/login.html">Login</a>
+    </div>
+
+</nav>
+
+
+<main class="main">
+
+    <div class="card">
+
+        <div class="left">
+
+            <div class="big-icon">💰</div>
+
+            <h1>Start Tracking Smarter.</h1>
+
+            <p>
+                Create your ExpenseTracker account and
+                manage your expenses, categories and
+                monthly budgets from one dashboard.
+            </p>
+
+            <div class="features">
+
+                <div class="feature">
+                    <div class="check">✓</div>
+                    Track your expenses
+                </div>
+
+                <div class="feature">
+                    <div class="check">✓</div>
+                    Organize categories
+                </div>
+
+                <div class="feature">
+                    <div class="check">✓</div>
+                    Manage monthly budgets
+                </div>
+
+                <div class="feature">
+                    <div class="check">✓</div>
+                    Store data in MySQL
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="right">
+
+            <h2>Create Account</h2>
+
+            <p class="subtitle">
+                Register your ExpenseTracker account.
+            </p>
+
+            <form id="registerForm">
+
+                <div class="form-group">
+
+                    <label for="name">
+                        Full Name
+                    </label>
+
+                    <div class="input-box">
+
+                        <span class="input-icon">👤</span>
+
+                        <input
+                                type="text"
+                                id="name"
+                                placeholder="Enter your full name"
+                                required
+                                maxlength="100"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="email">
+                        Email Address
+                    </label>
+
+                    <div class="input-box">
+
+                        <span class="input-icon">✉️</span>
+
+                        <input
+                                type="email"
+                                id="email"
+                                placeholder="Enter your email"
+                                required
+                                maxlength="150"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <button
+                        class="btn"
+                        id="registerBtn"
+                        type="submit">
+
+                    Create Account
+
+                </button>
+
+            </form>
+
+
+            <div id="message" class="message"></div>
+
+
+            <div class="info">
+                Your current Spring Boot backend stores
+                <strong>name and email</strong>.
+                Password authentication has not yet been added.
+            </div>
+
+
+            <div class="bottom-link">
+
+                Already have an account?
+
+                <a href="/login.html">
+                    Login
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</main>
+
+
+<footer>
+    ExpenseTracker © 2026
+</footer>
+
+
+<script>
+
+    const form = document.getElementById("registerForm");
+    const nameInput = document.getElementById("name");
+    const emailInput = document.getElementById("email");
+    const button = document.getElementById("registerBtn");
+    const message = document.getElementById("message");
+
+
+    form.addEventListener("submit", async function(e) {
+
+        e.preventDefault();
+
+        const name = nameInput.value.trim();
+        const email = emailInput.value.trim();
+
+        if (!name || !email) {
+            showMessage("Please fill all fields.", "error");
+            return;
+        }
+
+        button.disabled = true;
+        button.textContent = "Creating Account...";
+
+        try {
+
+            const response = await fetch("/users", {
+
+                method: "POST",
+
+                headers: {
+                    "Content-Type": "application/json"
+                },
+
+                body: JSON.stringify({
+                    name: name,
+                    email: email
+                })
+
+            });
+
+
+            let data = null;
+
+            try {
+                data = await response.json();
+            } catch {
+                data = null;
+            }
+
+
+            if (!response.ok) {
+
+                showMessage(
+                    data?.message ||
+                    "Registration failed. This email may already exist.",
+                    "error"
+                );
+
+                return;
+            }
+
+
+            showMessage(
+                "🎉 Account created successfully!",
+                "success"
+            );
+
+
+            setTimeout(() => {
+
+                window.location.href =
+                    "/login.html";
+
+            }, 1200);
+
+
+        } catch (error) {
+
+            console.error(error);
+
+            showMessage(
+                "Cannot connect to the Spring Boot server.",
+                "error"
+            );
+
+        } finally {
+
+            button.disabled = false;
+            button.textContent = "Create Account";
+
+        }
+
+    });
+
+
+    function showMessage(text, type) {
+
+        message.textContent = text;
+
+        message.className =
+            "message " + type;
+
+    }
+
+</script>
+
+</body>
+</html>
